@@ -9,8 +9,13 @@ const Note = ({ id, text, date, getRefreshedNotes }) => {
       getRefreshedNotes();
     });
   };
+  const dropNote = (event) => {
+    event.target.style.left = `${event.pageX - 50}px`;
+    event.target.style.top = `${event.pageY - 50}px`;
+  };
+
   return (
-    <div className="note">
+    <div className="note" draggable="true" onDragEnd={dropNote}>
       <span>{text}</span>
       <div className="note-footer">
         <small>{date}</small>

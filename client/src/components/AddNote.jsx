@@ -22,7 +22,7 @@ const AddNote = ({ getRefreshedNotes }) => {
   };
 
   return (
-    <div className="note new">
+    <div className="note-add new">
       <textarea
         rows="8"
         cols="10"

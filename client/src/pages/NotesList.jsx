@@ -28,10 +28,15 @@ const NotesList = () => {
     day: '2-digit'
   });
 
+  const dragOver = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+  };
+
   return (
     <div>
       <Search notes={notes} setNotes={setNotes} />
-      <div className="notes-list">
+      <div className="notes-list" onDragOver={dragOver}>
         <AddNote getRefreshedNotes={getAllNotes} />
         {notes &&
           notes.map((note) => (
