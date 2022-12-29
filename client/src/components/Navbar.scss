@@ -1,0 +1,24 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  a {
+    text-decoration: none;
+    padding: 0.8em;
+  }
+}
+
+.header-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dark-icon {
+  cursor: pointer;
+}
+
+.light-icon {
+  color: white;
+  cursor: pointer;
+}

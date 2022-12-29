@@ -1,0 +1,108 @@
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dark-mode {
+  background-color: black;
+}
+
+.dark-mode h1 {
+  color: white;
+}
+.container {
+  max-width: 960px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+  min-height: 100vh;
+}
+
+.notes-list {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.note.new {
+  background-color: rgb(152, 216, 195);
+}
+
+textarea {
+  border: none;
+  resize: none;
+  background-color: rgb(152, 216, 195);
+  &:focus {
+    outline: none;
+  }
+}
+
+.add {
+  background-color: rgb(241, 231, 219);
+  border: none;
+  border-radius: 15px;
+  padding: 5px 10px;
+  &:hover {
+    background-color: rgb(252, 249, 246);
+    cursor: pointer;
+  }
+}
+
+.note {
+  background-color: rgb(246, 246, 133);
+  border-radius: 10px;
+  padding: 1rem;
+  min-height: 170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  white-space: pre-wrap;
+  // box-shadow: 0 0 3px grey;
+}
+
+.note-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.delete-icon {
+  cursor: pointer;
+  &:hover {
+    color: red;
+    transform: scale(1.5);
+    transition: 0.8s;
+  }
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  background-color: rgb(241, 231, 219);
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 1.5em;
+}
+
+.search input {
+  border: none;
+  background-color: rgb(241, 231, 219);
+  &:focus {
+    outline: none;
+  }
+}
