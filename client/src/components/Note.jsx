@@ -2,7 +2,7 @@ import React from 'react';
 import { MdDeleteForever } from 'react-icons/md';
 import { deleteNote } from '../services/notes';
 
-const Note = ({ id, text, date, getRefreshedNotes }) => {
+const Note = ({ id, text, date, rotate, getRefreshedNotes }) => {
   const handleDeleteNote = () => {
     deleteNote(id).then(() => {
       console.log('One note was deleted');
@@ -15,8 +15,16 @@ const Note = ({ id, text, date, getRefreshedNotes }) => {
   };
 
   return (
-    <div className="note" draggable="true" onDragEnd={dropNote}>
-      <span>{text}</span>
+    <div
+      className="note"
+      draggable="true"
+      onDragEnd={dropNote}
+      style={{ transform: `rotate(${rotate}deg)` }}
+    >
+      <span>
+        {text}
+        {rotate}
+      </span>
       <div className="note-footer">
         <small>{date}</small>
         <MdDeleteForever

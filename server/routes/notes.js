@@ -24,7 +24,7 @@ router.get('/search', (req, res, next) => {
 // - GET - '/notes' - get all notes
 router.get('/', (req, res, next) => {
   Note.find()
-    .sort({ createdAt: -1 })
+    .sort({ createdAt: 1 })
     .then((notes) => {
       console.log(notes);
       res.json({ notes });

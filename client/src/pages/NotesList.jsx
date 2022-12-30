@@ -44,6 +44,7 @@ const NotesList = () => {
               key={note._id}
               id={note._id}
               text={note.text}
+              rotate={note.rotate}
               date={formatter.format(Date.parse(note.createdAt))}
               getRefreshedNotes={getAllNotes}
             />

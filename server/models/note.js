@@ -8,6 +8,12 @@ const noteSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true
+    },
+    rotate: {
+      type: Number,
+      default: function genRandom() {
+        return Math.floor(Math.random() * 21) - 10;
+      }
     }
     // date: {
     //   type: Date,

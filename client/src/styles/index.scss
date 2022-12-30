@@ -76,7 +76,8 @@ textarea {
 }
 
 .note {
-  background-color: rgb(246, 246, 133);
+  background-image: url('../assets/kiwihug-3gifzboyZk0-unsplash.jpg');
+  background-size: cover;
   border-radius: 10px;
   padding: 1rem;
   height: 170px;
@@ -85,8 +86,7 @@ textarea {
   flex-direction: column;
   justify-content: space-between;
   white-space: pre-wrap;
-
-  // box-shadow: 0 0 3px grey;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
   position: absolute;
   cursor: grab;
   top: 130px;
