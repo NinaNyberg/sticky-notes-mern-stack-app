@@ -21,10 +21,7 @@ const Note = ({ id, text, date, rotate, getRefreshedNotes }) => {
       onDragEnd={dropNote}
       style={{ transform: `rotate(${rotate}deg)` }}
     >
-      <span>
-        {text}
-        {rotate}
-      </span>
+      <span>{text}</span>
       <div className="note-footer">
         <small>{date}</small>
         <MdDeleteForever
