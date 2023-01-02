@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap');
+
 *,
 *:before,
 *:after {
@@ -86,6 +88,8 @@ textarea {
   background-size: cover;
   border: none;
   outline: 1px solid transparent;
+  font-family: 'Reenie Beanie', cursive, sans-serif;
+  font-size: 1.5em;
   -webkit-backface-visibility: hidden;
   transform: translateZ(0);
   will-change: transform;
@@ -101,6 +105,7 @@ textarea {
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
   &:hover {
     filter: brightness(70%);
+    box-shadow: 10px 10px 7px rgba(0, 0, 0, 0.7);
   }
   // position: absolute;
   // cursor: move;
