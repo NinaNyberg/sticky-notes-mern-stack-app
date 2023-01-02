@@ -34,12 +34,12 @@ const Navbar = ({ darkMode, handleDarkMode }) => {
 
         {!darkMode ? (
           <MdNightlightRound
-            onClick={() => handleDarkMode((prevDarkMode) => !prevDarkMode)}
+            onClick={() => handleDarkMode((prevState) => !prevState)}
             className="dark-icon"
           />
         ) : (
           <MdOutlineWbSunny
-            onClick={() => handleDarkMode((prevDarkMode) => !prevDarkMode)}
+            onClick={() => handleDarkMode((prevState) => !prevState)}
             className="light-icon"
           />
         )}

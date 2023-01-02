@@ -1,8 +1,10 @@
-import { redirect } from 'react-router-dom';
 import api from './api';
 
 export const loadNotes = () =>
   api.get('/notes').then((response) => response.data);
+
+// export const getMode = () =>
+//   api.get('/notes').then((response) => response.data);
 
 export const noteSearch = (term) =>
   api.get(`/notes/search?term=${term}`).then((response) => response.data);
