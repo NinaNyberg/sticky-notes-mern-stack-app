@@ -17,8 +17,8 @@ const Note = ({ id, text, date, rotate, background, getRefreshedNotes }) => {
   return (
     <div
       className="note"
-      draggable="true"
-      onDragEnd={dropNote}
+      // draggable="true"
+      // onDragEnd={dropNote}
       style={{
         transform: `rotate(${rotate}deg)`,
         background: `${background} `
