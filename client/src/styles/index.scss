@@ -22,7 +22,7 @@ body {
 
 .dark-mode {
   background-color: rgb(63, 62, 62);
-  min-height: 100%;
+  min-height: 100vh;
 }
 
 .dark-mode h1 {
@@ -36,7 +36,7 @@ body {
   padding-bottom: 1.5em;
   padding-right: 15px;
   padding-left: 15px;
-  min-height: 100%;
+  min-height: 100vh;
   // height: auto;
 }
 
@@ -84,8 +84,8 @@ textarea {
 }
 
 .note {
-  background-image: url('../assets/kiwihug-3gifzboyZk0-unsplash.jpg');
-  background-size: cover;
+  // background-image: url('../assets/kiwihug-3gifzboyZk0-unsplash.jpg');
+  // background-size: cover;
   border: none;
   outline: 1px solid transparent;
   font-family: 'Reenie Beanie', cursive, sans-serif;
@@ -104,8 +104,8 @@ textarea {
   white-space: pre-wrap;
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
   &:hover {
-    filter: brightness(70%);
-    box-shadow: 10px 10px 7px rgba(0, 0, 0, 0.7);
+    // filter: brightness(70%);
+    box-shadow: 0px 10px 7px 0px rgba(0, 0, 0, 0.7);
   }
   // position: absolute;
   // cursor: move;
@@ -140,7 +140,10 @@ textarea {
 
 .delete-icon {
   cursor: pointer;
+  width: 0.7em;
+  opacity: 0.5;
   &:hover {
+    opacity: initial;
     color: red;
     transform: scale(1.5);
     transition: 0.8s;
@@ -148,6 +151,8 @@ textarea {
 }
 
 .search {
+  width: 15em;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   background-color: rgb(241, 231, 219);

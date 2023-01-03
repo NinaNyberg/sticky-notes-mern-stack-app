@@ -3,18 +3,16 @@ import AddNote from '../components/AddNote';
 import Note from '../components/Note';
 import Search from '../components/Search';
 import { loadNotes } from '../services/notes';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const NotesList = () => {
   const [notes, setNotes] = useState([]);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const getAllNotes = () => {
     loadNotes().then((data) => {
       setNotes(data.notes);
-
-      navigate(`/notes`);
     });
   };
 
@@ -46,6 +44,7 @@ const NotesList = () => {
               id={note._id}
               text={note.text}
               rotate={note.rotate}
+              background={note.color}
               date={formatter.format(Date.parse(note.createdAt))}
               getRefreshedNotes={getAllNotes}
             />

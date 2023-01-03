@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import './Navbar.scss';
 import AuthenticationContext from '../context/authentication';
 import { signOutUser } from './../services/authentication';
@@ -7,19 +7,19 @@ import { MdNightlightRound } from 'react-icons/md';
 import { MdOutlineWbSunny } from 'react-icons/md';
 
 const Navbar = ({ darkMode, handleDarkMode }) => {
-  const { user, setUser } = useContext(AuthenticationContext);
+  // const { user, setUser } = useContext(AuthenticationContext);
 
-  const handleSignOut = () => {
-    signOutUser().then(() => {
-      setUser(null);
-    });
-  };
+  // const handleSignOut = () => {
+  //   signOutUser().then(() => {
+  //     setUser(null);
+  //   });
+  // };
 
   return (
     <nav className="header">
-      <h1>Notes</h1>
+      <h1>Notes App</h1>
       <div className="header-options">
-        <Link to="/">Home</Link>
+        {/* <Link to="/">Home</Link>
         {(user && (
           <>
             <span>Welcome {user.name}</span>
@@ -30,7 +30,7 @@ const Navbar = ({ darkMode, handleDarkMode }) => {
             <Link to="/log-in">Log In</Link>
             <Link to="/register">Register</Link>
           </>
-        )}
+        )} */}
 
         {!darkMode ? (
           <MdNightlightRound

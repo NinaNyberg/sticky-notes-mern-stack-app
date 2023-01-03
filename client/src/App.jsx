@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import RegisterPage from './pages/RegisterPage';
 import LogInPage from './pages/LogInPage';
-import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import AuthenticationContext from './context/authentication';
 import { loadUserInformation } from './services/authentication';
@@ -20,11 +19,6 @@ const App = () => {
       setUser(data.user);
     });
     localStorage.setItem('darkmode', JSON.stringify(darkMode));
-
-    // getMode().then((data) => {
-    //   console.log(data);
-    //   setDarkMode(data);
-    // });
   }, [darkMode]);
 
   return (
@@ -34,8 +28,7 @@ const App = () => {
           <BrowserRouter>
             <Navbar darkMode={darkMode} handleDarkMode={setDarkMode} />
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/notes" element={<NotesList />} />
+              <Route path="/" element={<NotesList />} />
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/log-in" element={<LogInPage />} />
             </Routes>
