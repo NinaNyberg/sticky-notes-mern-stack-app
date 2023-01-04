@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { MdDeleteForever } from 'react-icons/md';
-import { deleteNote } from '../services/notes';
+import { deleteNote, editNote } from '../services/notes';
 
 const Note = ({ id, text, date, rotate, background, getRefreshedNotes }) => {
   const handleDeleteNote = () => {
@@ -9,31 +9,59 @@ const Note = ({ id, text, date, rotate, background, getRefreshedNotes }) => {
       getRefreshedNotes();
     });
   };
-  const dropNote = (event) => {
-    event.target.style.left = `${event.pageX - 50}px`;
-    event.target.style.top = `${event.pageY - 50}px`;
+
+  const [isEditing, setIsEditing] = useState(false);
+  const [content, setContent] = useState(text);
+
+  const handleEdit = (x) => {
+    console.log(x);
+    editNote(id, x).then((data) => {
+      console.log(data);
+      setIsEditing(false);
+    });
   };
 
+  // const dropNote = (event) => {
+  //   event.target.style.left = `${event.pageX - 50}px`;
+  //   event.target.style.top = `${event.pageY - 50}px`;
+  // };
+
   return (
-    <div
-      className="note"
-      // draggable="true"
-      // onDragEnd={dropNote}
-      style={{
-        transform: `rotate(${rotate}deg)`,
-        background: `${background} `
-      }}
-    >
-      <span>{text}</span>
-      <div className="note-footer">
-        <small>{date}</small>
-        <MdDeleteForever
-          onClick={() => handleDeleteNote()}
-          className="delete-icon"
-          size="1.3em"
-        />
+    <>
+      <div
+        className="note"
+        // draggable="true"
+        // onDragEnd={dropNote}
+        style={{
+          transform: `rotate(${rotate}deg)`,
+          background: `${background} `
+        }}
+      >
+        {isEditing ? (
+          <textarea
+            onChange={(e) => {
+              setContent(e.target.value);
+              console.log(e.target.value);
+            }}
+            value={content}
+            onBlur={() => handleEdit({ text: content })}
+          />
+        ) : (
+          <span onDoubleClick={() => setIsEditing(true)}>{content}</span>
+        )}
+
+        {/* <span>{text}</span> */}
+
+        <div className="note-footer">
+          <small>{date}</small>
+          <MdDeleteForever
+            onClick={() => handleDeleteNote()}
+            className="delete-icon"
+            size="1.3em"
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

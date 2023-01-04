@@ -19,7 +19,7 @@ const Search = ({ notes, setNotes }) => {
       // console.log(data);
       setNotes(data.notes);
       if (!term) {
-        return setNotes(data.notes).sort();
+        return setNotes(data.notes);
       }
     });
   }, [term]);

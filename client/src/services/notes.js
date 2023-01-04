@@ -6,7 +6,15 @@ export const noteSearch = (term) =>
   api.get(`/search?term=${term}`).then((response) => response.data);
 
 export const editNote = (id, note) =>
-  api.patch(`/${id}`, note).then((response) => response.data);
+  api
+    .patch(
+      `/${id}`,
+      note
+      // {
+      //   headers: { 'Content-Type': 'application/json' }
+      // }
+    )
+    .then((response) => response.data);
 
 export const createNote = (note) =>
   api.post('/', note).then((response) => response.data);

@@ -3,6 +3,8 @@ import AddNote from '../components/AddNote';
 import Note from '../components/Note';
 import Search from '../components/Search';
 import { loadNotes } from '../services/notes';
+import { editNote } from '../services/notes';
+// import ElementMaker from '../components/ElementMaker';
 // import { useNavigate } from 'react-router-dom';
 
 const NotesList = () => {
@@ -40,6 +42,8 @@ const NotesList = () => {
         {notes &&
           notes.map((note) => (
             <Note
+              // contenteditable="true"
+              // onInput={(e) => editNote(note.id, e.currentTarget.textContent)}
               key={note._id}
               id={note._id}
               text={note.text}
@@ -47,7 +51,20 @@ const NotesList = () => {
               background={note.color}
               date={formatter.format(Date.parse(note.createdAt))}
               getRefreshedNotes={getAllNotes}
-            />
+            >
+              {/* <ElementMaker
+                value={note.text}
+                handleChange={(e) => {
+                  editNote(note._id, e.target.value).then((data) => {
+                    console.log('Edited!');
+                  });
+                }}
+                handleDoubleClick={() => setShowInputEle(true)}
+                handleBlur={() => setShowInputEle(false)}
+                showInputEle={showInputEle}
+              />
+              ; */}
+            </Note>
           ))}
       </div>
     </div>
