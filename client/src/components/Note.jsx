@@ -15,9 +15,9 @@ const Note = ({ id, text, date, rotate, background, getRefreshedNotes }) => {
 
   const handleEdit = (x) => {
     console.log(x);
+    setIsEditing(false);
     editNote(id, x).then((data) => {
       console.log(data);
-      setIsEditing(false);
     });
   };
 
@@ -39,11 +39,13 @@ const Note = ({ id, text, date, rotate, background, getRefreshedNotes }) => {
       >
         {isEditing ? (
           <textarea
+            autoFocus={true}
             onChange={(e) => {
               setContent(e.target.value);
               console.log(e.target.value);
             }}
             value={content}
+            // onMouseUp={setIsEditing(false)}
             onBlur={() => handleEdit({ text: content })}
           />
         ) : (
