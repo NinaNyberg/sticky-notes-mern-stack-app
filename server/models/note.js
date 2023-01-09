@@ -12,13 +12,16 @@ const noteSchema = new mongoose.Schema(
     rotate: {
       type: Number,
       default: function genRandom() {
-        return Math.floor(Math.random() * 21) - 10;
+        return Math.floor(Math.random() * 11) - 5;
+      }
+    },
+    color: {
+      type: String,
+      default: function randomColor() {
+        let randColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+        return randColor.toUpperCase();
       }
     }
-    // date: {
-    //   type: Date,
-    //   default: Date.now()
-    // }
   },
   { timestamps: true }
 );
