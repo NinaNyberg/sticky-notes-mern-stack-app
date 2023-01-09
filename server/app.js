@@ -14,7 +14,7 @@ const serveFavicon = require('serve-favicon');
 const mongoose = require('mongoose');
 const authenticationDeserializer = require('./middleware/authentication-deserializer.js');
 const baseRouter = require('./routes/base');
-const authenticationRouter = require('./routes/authentication');
+// const authenticationRouter = require('./routes/authentication');
 // const notesRouter = require('./routes/notes');
 
 const app = express();
@@ -26,7 +26,7 @@ app.use(
     ...(process.env.CLIENT_APP_ORIGINS && {
       origin: process.env.CLIENT_APP_ORIGINS.split(',')
     }),
-    credentials: true
+    credentials: false
   })
 );
 app.use(express.json());
@@ -49,10 +49,10 @@ app.use(
     })
   })
 );
-app.use(authenticationDeserializer);
+// app.use(authenticationDeserializer);
 
 app.use('/', baseRouter);
-app.use('/authentication', authenticationRouter);
+// app.use('/authentication', authenticationRouter);
 // app.use('/notes', notesRouter);
 
 // Catch missing routes and forward to error handler
