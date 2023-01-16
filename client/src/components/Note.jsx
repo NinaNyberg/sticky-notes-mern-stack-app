@@ -45,7 +45,6 @@ const Note = ({ id, text, date, rotate, background, getRefreshedNotes }) => {
               console.log(e.target.value);
             }}
             value={content}
-            // onMouseUp={setIsEditing(false)}
             onBlur={() => handleEdit({ text: content })}
           />
         ) : (
