@@ -171,3 +171,12 @@ textarea {
     outline: none;
   }
 }
+
+.pinned-note {
+  cursor: pointer;
+  color: red;
+}
+
+.pin-note {
+  cursor: pointer;
+}

@@ -1,8 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { MdDeleteForever } from 'react-icons/md';
-import { deleteNote, editNote } from '../services/notes';
+import { AiTwotonePushpin } from 'react-icons/ai';
+import {
+  deleteNote,
+  editNote,
+  pinAdd,
+  pinRemove,
+  pinList
+} from '../services/notes';
 
-const Note = ({ id, text, date, rotate, background, getRefreshedNotes }) => {
+const Note = ({
+  id,
+  text,
+  date,
+  rotate,
+  background,
+  getRefreshedNotes,
+  pins,
+  setPins
+}) => {
   const handleDeleteNote = () => {
     deleteNote(id).then(() => {
       console.log('One note was deleted');
@@ -12,6 +28,7 @@ const Note = ({ id, text, date, rotate, background, getRefreshedNotes }) => {
 
   const [isEditing, setIsEditing] = useState(false);
   const [content, setContent] = useState(text);
+  // const [pin, setPin] = useState(false);
 
   const handleEdit = (x) => {
     console.log(x);
@@ -20,6 +37,47 @@ const Note = ({ id, text, date, rotate, background, getRefreshedNotes }) => {
       console.log(data);
     });
   };
+
+  // useEffect(() => {
+  //   pinList().then((data) => {
+  //     setPins(data.notes);
+  //   });
+  // }, []);
+
+  const pin = pins && pins.some((item) => item._id === id);
+  console.log(pin);
+
+  // const handleSetPin = () => {
+  //   pinAdd(id).then((data) => {
+  //     setPin(true);
+  //   });
+  // };
+
+  const handleSetPin = () => {
+    pinAdd(id)
+      .then((data) => {
+        return pinList();
+      })
+      .then((data) => {
+        setPins(data.notes);
+      });
+  };
+
+  const handleRemovePin = () => {
+    pinRemove(id)
+      .then((data) => {
+        return pinList();
+      })
+      .then((data) => {
+        setPins(data.notes);
+      });
+  };
+
+  // const handleRemovePin = () => {
+  //   pinRemove(id).then((data) => {
+  //     setPin(false);
+  //   });
+  // };
 
   // const dropNote = (event) => {
   //   event.target.style.left = `${event.pageX - 50}px`;
@@ -60,6 +118,16 @@ const Note = ({ id, text, date, rotate, background, getRefreshedNotes }) => {
             className="delete-icon"
             size="1.3em"
           />
+          <div className="bookmarks">
+            {(pin && (
+              <AiTwotonePushpin
+                className="pinned-note"
+                onClick={handleRemovePin}
+              />
+            )) || (
+              <AiTwotonePushpin className="pin-note" onClick={handleSetPin} />
+            )}
+          </div>
         </div>
       </div>
     </>

@@ -2,12 +2,15 @@ import { useState, useEffect } from 'react';
 import AddNote from '../components/AddNote';
 import Note from '../components/Note';
 import Search from '../components/Search';
-import { loadNotes } from '../services/notes';
+import { loadNotes, pinList } from '../services/notes';
 // import { useNavigate } from 'react-router-dom';
 
 const NotesList = () => {
   const [loading, setLoading] = useState(false);
   const [notes, setNotes] = useState([]);
+  const [pins, setPins] = useState([]);
+
+  console.log(pins);
 
   // const navigate = useNavigate();
 
@@ -21,6 +24,12 @@ const NotesList = () => {
 
   useEffect(() => {
     getAllNotes();
+  }, []);
+
+  useEffect(() => {
+    pinList().then((data) => {
+      setPins(data.notes);
+    });
   }, []);
 
   const formatter = new Intl.DateTimeFormat('en-GB', {
@@ -43,18 +52,22 @@ const NotesList = () => {
         {loading ? (
           <h3>Loading...</h3>
         ) : (
-          (Boolean(notes.length) &&
-            notes.map((note) => (
-              <Note
-                key={note._id}
-                id={note._id}
-                text={note.text}
-                rotate={note.rotate}
-                background={note.color}
-                date={formatter.format(Date.parse(note.createdAt))}
-                getRefreshedNotes={getAllNotes}
-              />
-            ))) || <h3>Nothing to display :( Write a new note!</h3>
+          (!Boolean(notes.length) && (
+            <h3>Nothing to display :( Write a new note!</h3>
+          )) ||
+          notes.map((note) => (
+            <Note
+              key={note._id}
+              id={note._id}
+              text={note.text}
+              rotate={note.rotate}
+              background={note.color}
+              date={formatter.format(Date.parse(note.createdAt))}
+              getRefreshedNotes={getAllNotes}
+              pins={pins}
+              setPins={setPins}
+            />
+          ))
         )}
       </div>
     </div>
