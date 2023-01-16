@@ -41,7 +41,7 @@ const NotesList = () => {
         {/* onDragOver={dragOver} */}
         <AddNote getRefreshedNotes={getAllNotes} />
         {loading && <h3>Loading...</h3>}
-        {(notes.length &&
+        {notes.length &&
           notes.map((note) => (
             <Note
               key={note._id}
@@ -52,7 +52,7 @@ const NotesList = () => {
               date={formatter.format(Date.parse(note.createdAt))}
               getRefreshedNotes={getAllNotes}
             />
-          ))) || <h3>No notes added yet</h3>}
+          ))}
       </div>
     </div>
   );
