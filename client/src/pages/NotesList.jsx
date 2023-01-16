@@ -54,8 +54,7 @@ const NotesList = () => {
                 date={formatter.format(Date.parse(note.createdAt))}
                 getRefreshedNotes={getAllNotes}
               />
-            ))) ||
-          'Nothing to display'
+            ))) || <h3>Nothing to display :( Write a new note!</h3>
         )}
       </div>
     </div>
