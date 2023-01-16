@@ -41,7 +41,7 @@ const NotesList = () => {
         {/* onDragOver={dragOver} */}
         <AddNote getRefreshedNotes={getAllNotes} />
         {loading && <h3>Loading...</h3>}
-        {notes.length &&
+        {Boolean(notes.length) &&
           notes.map((note) => (
             <Note
               key={note._id}
