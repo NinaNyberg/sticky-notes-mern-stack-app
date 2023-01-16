@@ -15,8 +15,8 @@ const NotesList = () => {
     setLoading(true);
     loadNotes().then((data) => {
       setNotes(data.notes);
+      setLoading(false);
     });
-    setLoading(false);
   };
 
   useEffect(() => {
@@ -40,8 +40,10 @@ const NotesList = () => {
       <div className="notes-list">
         {/* onDragOver={dragOver} */}
         <AddNote getRefreshedNotes={getAllNotes} />
-        {loading && <h3>Loading...</h3>}
-        {Boolean(notes.length) &&
+        {loading ? (
+          <h3>Loading...</h3>
+        ) : (
+          notes &&
           notes.map((note) => (
             <Note
               key={note._id}
@@ -52,7 +54,8 @@ const NotesList = () => {
               date={formatter.format(Date.parse(note.createdAt))}
               getRefreshedNotes={getAllNotes}
             />
-          ))}
+          ))
+        )}
       </div>
     </div>
   );
