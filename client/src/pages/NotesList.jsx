@@ -43,18 +43,19 @@ const NotesList = () => {
         {loading ? (
           <h3>Loading...</h3>
         ) : (
-          notes &&
-          notes.map((note) => (
-            <Note
-              key={note._id}
-              id={note._id}
-              text={note.text}
-              rotate={note.rotate}
-              background={note.color}
-              date={formatter.format(Date.parse(note.createdAt))}
-              getRefreshedNotes={getAllNotes}
-            />
-          ))
+          (Boolean(notes.length) &&
+            notes.map((note) => (
+              <Note
+                key={note._id}
+                id={note._id}
+                text={note.text}
+                rotate={note.rotate}
+                background={note.color}
+                date={formatter.format(Date.parse(note.createdAt))}
+                getRefreshedNotes={getAllNotes}
+              />
+            ))) ||
+          'Nothing to display'
         )}
       </div>
     </div>
