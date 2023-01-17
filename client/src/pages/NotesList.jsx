@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useLayoutEffect } from 'react';
 import AddNote from '../components/AddNote';
 import Note from '../components/Note';
 import Search from '../components/Search';
 import { loadNotes, pinList } from '../services/notes';
+import Spinner from '../components/Spinner';
 // import { useNavigate } from 'react-router-dom';
 
 const NotesList = () => {
@@ -15,22 +16,26 @@ const NotesList = () => {
   // const navigate = useNavigate();
 
   const getAllNotes = () => {
-    setLoading(true);
     loadNotes().then((data) => {
-      setNotes(data.notes);
-      setLoading(false);
+      // setNotes(data.notes);
+      // setLoading(false);
+      setTimeout(() => {
+        setNotes(data.notes);
+        setLoading(false);
+      }, 500);
     });
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    setLoading(true);
     getAllNotes();
   }, []);
 
-  useEffect(() => {
-    pinList().then((data) => {
-      setPins(data.notes);
-    });
-  }, []);
+  // useEffect(() => {
+  //   pinList().then((data) => {
+  //     setPins(data.notes);
+  //   });
+  // }, []);
 
   const formatter = new Intl.DateTimeFormat('en-GB', {
     year: 'numeric',
@@ -50,7 +55,7 @@ const NotesList = () => {
         {/* onDragOver={dragOver} */}
         <AddNote getRefreshedNotes={getAllNotes} />
         {loading ? (
-          <h3>Loading...</h3>
+          <Spinner />
         ) : (
           (!Boolean(notes.length) && (
             <h3>Nothing to display :( Write a new note!</h3>
