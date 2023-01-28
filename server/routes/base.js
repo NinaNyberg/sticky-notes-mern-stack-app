@@ -45,21 +45,14 @@ router.get('/', (req, res, next) => {
 
 // list all pins
 router.get('/pinned', (req, res, next) => {
-  const noteId = req.params._id;
-  Pin.find({ note: noteId })
+  const { id } = req.params;
+  Pin.find({ note: id })
+    .sort({ createdAt: -1 })
     .then((pins) => {
       const notes = pins.map((pin) => {
         if (pin.note) console.log(pin.note);
         return pin.note;
-        // return String(
-        //   bookmark.pet._id +
-        //     ' ' +
-        //     bookmark.pet.name +
-        //     ' ' +
-        //     bookmark.pet.picture
-        // );
       });
-      // const pets = bookmarks.map((bookmark) => bookmark.pet);
       res.json({ notes });
     })
     .catch((error) => {
@@ -110,16 +103,19 @@ router.post('/', (req, res, next) => {
 });
 
 // set a pin
-router.post('/pin/:id', (req, res, next) => {
+router.post('/:id/pin', (req, res, next) => {
   const { id } = req.params;
   Pin.findOne({ note: id })
-    .then((note) => {
-      if (!note) {
+    .populate('note')
+    .then((data) => {
+      console.log(data.note);
+      if (!data) {
         return Pin.create({ note: id });
       }
     })
-    .then((pin) => {
-      res.json({ pin });
+    .then((note) => {
+      console.log('pin' + ' ' + note);
+      res.json({ note });
     })
     .catch((error) => {
       next(error);
@@ -127,9 +123,10 @@ router.post('/pin/:id', (req, res, next) => {
 });
 
 // delete a pin
-router.delete('/pin/:id', (req, res, next) => {
+router.delete('/:id/unpin', (req, res, next) => {
   const { id } = req.params;
-  Pin.findOneAndDelete({ note: id })
+  console.log(id);
+  Pin.findByIdAndDelete({ note: id })
     .then(() => {
       res.json({});
     })

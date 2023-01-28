@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { MdDeleteForever } from 'react-icons/md';
-import { AiTwotonePushpin } from 'react-icons/ai';
+// import { AiTwotonePushpin } from 'react-icons/ai';
 import {
   deleteNote,
-  editNote,
-  pinAdd,
-  pinRemove,
-  pinList
+  editNote
+  // pinAdd,
+  // pinRemove,
+  // pinList
 } from '../services/notes';
 
 const Note = ({
@@ -15,9 +15,9 @@ const Note = ({
   date,
   rotate,
   background,
-  getRefreshedNotes,
-  pins,
-  setPins
+  getRefreshedNotes
+  // pins,
+  // setPins
 }) => {
   const handleDeleteNote = () => {
     deleteNote(id).then(() => {
@@ -28,7 +28,7 @@ const Note = ({
 
   const [isEditing, setIsEditing] = useState(false);
   const [content, setContent] = useState(text);
-  // const [pin, setPin] = useState(false);
+  // const [pin, setPin] = useState(null);
 
   const handleEdit = (x) => {
     console.log(x);
@@ -44,8 +44,8 @@ const Note = ({
   //   });
   // }, []);
 
-  const pin = pins && pins.some((item) => item._id === id);
-  console.log(pin);
+  // const pin = pins && pins.some((item) => item._id === id);
+  // console.log(pin);
 
   // const handleSetPin = () => {
   //   pinAdd(id).then((data) => {
@@ -53,25 +53,30 @@ const Note = ({
   //   });
   // };
 
-  const handleSetPin = () => {
-    pinAdd(id)
-      .then((data) => {
-        return pinList();
-      })
-      .then((data) => {
-        setPins(data.notes);
-      });
-  };
+  // const handleSetPin = () => {
+  //   pinAdd(id)
+  // .then((data) => {
+  //   return pinList();
+  // })
+  //     .then((data) => {
+  //       console.log('kakka ' + data);
+  //       setPin(data.pin);
+  //     });
+  // };
 
-  const handleRemovePin = () => {
-    pinRemove(id)
-      .then((data) => {
-        return pinList();
-      })
-      .then((data) => {
-        setPins(data.notes);
-      });
-  };
+  // const handleRemovePin = () => {
+  //   pinRemove(id)
+  //     // .then((data) => {
+  //     //   return pinList();
+  //     // })
+  //     .then((data) => {
+  //       setPin(null);
+  //     });
+  // };
+
+  // const handlePin = () => {
+  //   console.log();
+  // };
 
   // const handleRemovePin = () => {
   //   pinRemove(id).then((data) => {
@@ -118,16 +123,24 @@ const Note = ({
             className="delete-icon"
             size="1.3em"
           />
-          <div className="bookmarks">
-            {(pin && (
+          {/* <div className="bookmarks"> */}
+          {/* {(pin && (
               <AiTwotonePushpin
                 className="pinned-note"
                 onClick={handleRemovePin}
               />
             )) || (
               <AiTwotonePushpin className="pin-note" onClick={handleSetPin} />
+            )} */}
+          {/* {!pin ? (
+              <AiTwotonePushpin className="pin-note" onClick={handleSetPin} />
+            ) : (
+              <AiTwotonePushpin
+                className="pinned-note"
+                onClick={handleRemovePin}
+              />
             )}
-          </div>
+          </div> */}
         </div>
       </div>
     </>

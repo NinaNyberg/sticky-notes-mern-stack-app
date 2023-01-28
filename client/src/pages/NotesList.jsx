@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect } from 'react';
+import { useState, useEffect } from 'react';
 import AddNote from '../components/AddNote';
 import Note from '../components/Note';
 import Search from '../components/Search';
@@ -9,9 +9,9 @@ import Spinner from '../components/Spinner';
 const NotesList = () => {
   const [loading, setLoading] = useState(false);
   const [notes, setNotes] = useState([]);
-  const [pins, setPins] = useState([]);
+  // const [pins, setPins] = useState([]);
 
-  console.log(pins);
+  // console.log(pins);
 
   // const navigate = useNavigate();
 
@@ -26,14 +26,15 @@ const NotesList = () => {
     });
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setLoading(true);
     getAllNotes();
   }, []);
 
   // useEffect(() => {
   //   pinList().then((data) => {
-  //     setPins(data.notes);
+  // console.log('data' + data);
+  // setPins(data);
   //   });
   // }, []);
 

@@ -18,7 +18,7 @@ export const pinList = () =>
   api.get('/pinned').then((response) => response.data);
 
 export const pinAdd = (id) =>
-  api.post(`/pin/${id}`).then((response) => response.data);
+  api.post(`/${id}/pin`).then((response) => response.data);
 
 export const pinRemove = (id) =>
-  api.delete(`/pin/${id}`).then((response) => response.data);
+  api.delete(`/${id}/unpin`).then((response) => response.data);
