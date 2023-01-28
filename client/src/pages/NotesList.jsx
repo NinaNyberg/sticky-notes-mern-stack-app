@@ -70,8 +70,8 @@ const NotesList = () => {
               background={note.color}
               date={formatter.format(Date.parse(note.createdAt))}
               getRefreshedNotes={getAllNotes}
-              pins={pins}
-              setPins={setPins}
+              // pins={pins}
+              // setPins={setPins}
             />
           ))
         )}
