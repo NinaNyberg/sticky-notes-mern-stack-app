@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MdDeleteForever } from 'react-icons/md';
+import Moment from 'react-moment';
 // import { AiTwotonePushpin } from 'react-icons/ai';
 import {
   deleteNote,
@@ -36,6 +37,15 @@ const Note = ({
     editNote(id, x).then((data) => {
       console.log(data);
     });
+  };
+
+  const calendarStrings = {
+    lastDay: '[Yesterday at] LT',
+    sameDay: '[Today at] LT',
+    nextDay: '[Tomorrow at] LT',
+    lastWeek: '[last] dddd [at] LT',
+    nextWeek: 'dddd [at] LT',
+    sameElse: 'L'
   };
 
   // useEffect(() => {
@@ -117,7 +127,9 @@ const Note = ({
         {/* <span>{text}</span> */}
 
         <div className="note-footer">
-          <small>{date}</small>
+          <small>
+            <Moment calendar={calendarStrings}>{date}</Moment>
+          </small>
           <MdDeleteForever
             onClick={() => handleDeleteNote()}
             className="delete-icon"
