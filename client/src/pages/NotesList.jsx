@@ -38,11 +38,11 @@ const NotesList = () => {
   //   });
   // }, []);
 
-  const formatter = new Intl.DateTimeFormat('en-GB', {
-    year: 'numeric',
-    month: 'short',
-    day: '2-digit'
-  });
+  // const formatter = new Intl.DateTimeFormat('en-GB', {
+  //   year: 'numeric',
+  //   month: 'short',
+  //   day: '2-digit'
+  // });
 
   // const dragOver = (event) => {
   //   event.stopPropagation();
@@ -68,7 +68,8 @@ const NotesList = () => {
               text={note.text}
               rotate={note.rotate}
               background={note.color}
-              date={formatter.format(Date.parse(note.createdAt))}
+              // date={formatter.format(Date.parse(note.createdAt))}
+              date={note.createdAt}
               getRefreshedNotes={getAllNotes}
               // pins={pins}
               // setPins={setPins}
