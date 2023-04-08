@@ -1,22 +1,18 @@
 import { useState } from 'react';
 import { createNote } from '../services/notes';
-// import { useNavigate } from 'react-router-dom';
 
 const AddNote = ({ getRefreshedNotes }) => {
   const [note, setNote] = useState({ text: '' });
 
   const characterLimit = 200;
 
-  //   const navigate = useNavigate();
-
+  //adding a new note
   const handleAdd = () => {
     if (note.text.trim().length > 0) {
       createNote(note).then((data) => {
         console.log('New note added', data);
         setNote({ text: '' });
         getRefreshedNotes();
-
-        // navigate(`/notes`);
       });
     }
   };

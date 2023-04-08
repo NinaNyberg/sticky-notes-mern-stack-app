@@ -7,6 +7,8 @@ import { MdNightlightRound } from 'react-icons/md';
 import { MdOutlineWbSunny } from 'react-icons/md';
 
 const Navbar = ({ darkMode, handleDarkMode }) => {
+  // POTENTIAL LOGIN/REGISTER FUNCTIONALITY TEMPORARY COMMENTED OUT
+
   // const { user, setUser } = useContext(AuthenticationContext);
 
   // const handleSignOut = () => {
@@ -31,6 +33,8 @@ const Navbar = ({ darkMode, handleDarkMode }) => {
             <Link to="/register">Register</Link>
           </>
         )} */}
+
+        {/* DARK/LIGHT MODE SWITCHER */}
 
         {!darkMode ? (
           <MdNightlightRound

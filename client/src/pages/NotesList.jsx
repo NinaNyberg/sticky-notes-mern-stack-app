@@ -4,21 +4,17 @@ import Note from '../components/Note';
 import Search from '../components/Search';
 import { loadNotes, pinList } from '../services/notes';
 import Spinner from '../components/Spinner';
-// import { useNavigate } from 'react-router-dom';
 
 const NotesList = () => {
+  // ADDING PINS FUNCTIONALITY TEMPORARY COMMENTED OUT
+
   const [loading, setLoading] = useState(false);
   const [notes, setNotes] = useState([]);
   // const [pins, setPins] = useState([]);
 
-  // console.log(pins);
-
-  // const navigate = useNavigate();
-
+  // list all notes on the homepage
   const getAllNotes = () => {
     loadNotes().then((data) => {
-      // setNotes(data.notes);
-      // setLoading(false);
       setTimeout(() => {
         setNotes(data.notes);
         setLoading(false);
@@ -38,12 +34,6 @@ const NotesList = () => {
   //   });
   // }, []);
 
-  // const formatter = new Intl.DateTimeFormat('en-GB', {
-  //   year: 'numeric',
-  //   month: 'short',
-  //   day: '2-digit'
-  // });
-
   // const dragOver = (event) => {
   //   event.stopPropagation();
   //   event.preventDefault();
@@ -51,10 +41,15 @@ const NotesList = () => {
 
   return (
     <div>
+      {/* search field */}
       <Search notes={notes} setNotes={setNotes} />
       <div className="notes-list">
         {/* onDragOver={dragOver} */}
+
+        {/* add note form */}
         <AddNote getRefreshedNotes={getAllNotes} />
+
+        {/* render notes */}
         {loading ? (
           <Spinner />
         ) : (
@@ -68,7 +63,6 @@ const NotesList = () => {
               text={note.text}
               rotate={note.rotate}
               background={note.color}
-              // date={formatter.format(Date.parse(note.createdAt))}
               date={note.createdAt}
               getRefreshedNotes={getAllNotes}
               // pins={pins}

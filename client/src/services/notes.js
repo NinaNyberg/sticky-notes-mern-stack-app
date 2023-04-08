@@ -1,5 +1,7 @@
 import api from './api';
 
+// helper functions for api calls
+
 export const loadNotes = () => api.get('/').then((response) => response.data);
 
 export const noteSearch = (term) =>
@@ -14,11 +16,13 @@ export const createNote = (note) =>
 export const deleteNote = (id) =>
   api.delete(`/${id}`).then((response) => response.data);
 
-export const pinList = () =>
-  api.get('/pinned').then((response) => response.data);
+// PINS UNUSED AT THE MOMENT
 
-export const pinAdd = (id) =>
-  api.post(`/${id}/pin`).then((response) => response.data);
+// export const pinList = () =>
+//   api.get('/pinned').then((response) => response.data);
 
-export const pinRemove = (id) =>
-  api.delete(`/${id}/unpin`).then((response) => response.data);
+// export const pinAdd = (id) =>
+//   api.post(`/${id}/pin`).then((response) => response.data);
+
+// export const pinRemove = (id) =>
+//   api.delete(`/${id}/unpin`).then((response) => response.data);

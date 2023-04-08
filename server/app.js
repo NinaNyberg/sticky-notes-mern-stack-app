@@ -15,7 +15,6 @@ const mongoose = require('mongoose');
 const authenticationDeserializer = require('./middleware/authentication-deserializer.js');
 const baseRouter = require('./routes/base');
 // const authenticationRouter = require('./routes/authentication');
-// const notesRouter = require('./routes/notes');
 
 const app = express();
 
@@ -29,17 +28,6 @@ app.use(
     credentials: true
   })
 );
-
-// app.use(function (req, res, next) {
-//   res.header('Access-Control-Allow-Origin', req.header('Origin'));
-//   res.header('Access-Control-Allow-Credentials', true);
-//   res.header(
-//     'Access-Control-Allow-Headers',
-//     'Origin, X-Requested-With, Content-Type, Accept'
-//   );
-//   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-//   next();
-// });
 
 app.use(express.json());
 app.use(
@@ -65,7 +53,6 @@ app.use(
 
 app.use('/', baseRouter);
 // app.use('/authentication', authenticationRouter);
-// app.use('/notes', notesRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {

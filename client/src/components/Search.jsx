@@ -16,7 +16,6 @@ const Search = ({ notes, setNotes }) => {
 
   useEffect(() => {
     noteSearch(term).then((data) => {
-      // console.log(data);
       setNotes(data.notes);
       if (!term) {
         return setNotes(data.notes);

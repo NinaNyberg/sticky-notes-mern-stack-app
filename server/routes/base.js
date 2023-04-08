@@ -44,22 +44,22 @@ router.get('/', (req, res, next) => {
 });
 
 // list all pins
-router.get('/pinned', (req, res, next) => {
-  const { id } = req.params;
-  Pin.find({ note: id })
-    .sort({ createdAt: -1 })
-    .then((pins) => {
-      const notes = pins.map((pin) => {
-        if (pin.note) console.log(pin.note);
-        return pin.note;
-      });
-      res.json({ notes });
-    })
-    .catch((error) => {
-      console.log(error);
-      next(error);
-    });
-});
+// router.get('/pinned', (req, res, next) => {
+//   const { id } = req.params;
+//   Pin.find({ note: id })
+//     .sort({ createdAt: -1 })
+//     .then((pins) => {
+//       const notes = pins.map((pin) => {
+//         if (pin.note) console.log(pin.note);
+//         return pin.note;
+//       });
+//       res.json({ notes });
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//       next(error);
+//     });
+// });
 
 // delete a note
 router.delete('/:id', (req, res, next) => {
@@ -103,36 +103,36 @@ router.post('/', (req, res, next) => {
 });
 
 // set a pin
-router.post('/:id/pin', (req, res, next) => {
-  const { id } = req.params;
-  Pin.findOne({ note: id })
-    .populate('note')
-    .then((data) => {
-      console.log(data.note);
-      if (!data) {
-        return Pin.create({ note: id });
-      }
-    })
-    .then((note) => {
-      console.log('pin' + ' ' + note);
-      res.json({ note });
-    })
-    .catch((error) => {
-      next(error);
-    });
-});
+// router.post('/:id/pin', (req, res, next) => {
+//   const { id } = req.params;
+//   Pin.findOne({ note: id })
+//     .populate('note')
+//     .then((data) => {
+//       console.log(data.note);
+//       if (!data) {
+//         return Pin.create({ note: id });
+//       }
+//     })
+//     .then((note) => {
+//       console.log('pin' + ' ' + note);
+//       res.json({ note });
+//     })
+//     .catch((error) => {
+//       next(error);
+//     });
+// });
 
 // delete a pin
-router.delete('/:id/unpin', (req, res, next) => {
-  const { id } = req.params;
-  console.log(id);
-  Pin.findByIdAndDelete({ note: id })
-    .then(() => {
-      res.json({});
-    })
-    .catch((error) => {
-      next(error);
-    });
-});
+// router.delete('/:id/unpin', (req, res, next) => {
+//   const { id } = req.params;
+//   console.log(id);
+//   Pin.findByIdAndDelete({ note: id })
+//     .then(() => {
+//       res.json({});
+//     })
+//     .catch((error) => {
+//       next(error);
+//     });
+// });
 
 module.exports = router;
