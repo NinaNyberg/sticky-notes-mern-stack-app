@@ -20,6 +20,7 @@ const Note = ({
   // pins,
   // setPins
 }) => {
+  // delete a note with service function
   const handleDeleteNote = () => {
     deleteNote(id).then(() => {
       console.log('One note was deleted');
@@ -27,18 +28,19 @@ const Note = ({
     });
   };
 
+  // editing a note
   const [isEditing, setIsEditing] = useState(false);
   const [content, setContent] = useState(text);
   // const [pin, setPin] = useState(null);
 
   const handleEdit = (x) => {
-    console.log(x);
     setIsEditing(false);
     editNote(id, x).then((data) => {
       console.log(data);
     });
   };
 
+  // momentJS calendar for formatting dates on the notes
   const calendarStrings = {
     lastDay: '[Yesterday at] LT',
     sameDay: '[Today at] LT',
@@ -47,52 +49,6 @@ const Note = ({
     nextWeek: 'dddd [at] LT',
     sameElse: 'L'
   };
-
-  // useEffect(() => {
-  //   pinList().then((data) => {
-  //     setPins(data.notes);
-  //   });
-  // }, []);
-
-  // const pin = pins && pins.some((item) => item._id === id);
-  // console.log(pin);
-
-  // const handleSetPin = () => {
-  //   pinAdd(id).then((data) => {
-  //     setPin(true);
-  //   });
-  // };
-
-  // const handleSetPin = () => {
-  //   pinAdd(id)
-  // .then((data) => {
-  //   return pinList();
-  // })
-  //     .then((data) => {
-  //       console.log('kakka ' + data);
-  //       setPin(data.pin);
-  //     });
-  // };
-
-  // const handleRemovePin = () => {
-  //   pinRemove(id)
-  //     // .then((data) => {
-  //     //   return pinList();
-  //     // })
-  //     .then((data) => {
-  //       setPin(null);
-  //     });
-  // };
-
-  // const handlePin = () => {
-  //   console.log();
-  // };
-
-  // const handleRemovePin = () => {
-  //   pinRemove(id).then((data) => {
-  //     setPin(false);
-  //   });
-  // };
 
   // const dropNote = (event) => {
   //   event.target.style.left = `${event.pageX - 50}px`;
@@ -115,7 +71,6 @@ const Note = ({
             autoFocus={true}
             onChange={(e) => {
               setContent(e.target.value);
-              console.log(e.target.value);
             }}
             value={content}
             onBlur={() => handleEdit({ text: content })}
